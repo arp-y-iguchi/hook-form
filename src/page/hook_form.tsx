@@ -6,6 +6,7 @@ import HookFormService from "../hooks/hook_form_service";
 import LabeledInputWithErrorMessageComponent from "../component/molecules/labeled_input_with_errormessage";
 import PostCodeComponent from "../component/organisms/post_code";
 import { mapRegisterChange } from "../constants/mapRegisterChange";
+import { FieldError } from "react-hook-form";
 
 export default function HookFormPage() {
   const {
@@ -18,7 +19,16 @@ export default function HookFormPage() {
     getAddressFromZipCode,
   } = HookFormService();
 
-  const firstItem = [
+  type itemsObj = {
+    label: string;
+    placeholder: string;
+    registerName: string;
+    errors: FieldError | undefined;
+  };
+
+  type items = itemsObj[];
+
+  const firstItem: items = [
     {
       label: "名前",
       placeholder: "お名前",
@@ -51,7 +61,7 @@ export default function HookFormPage() {
     },
   ];
 
-  const secondItem = [
+  const secondItem: items = [
     {
       label: "都道府県",
       placeholder: "都道府県",
@@ -116,7 +126,10 @@ export default function HookFormPage() {
         ))}
 
         <div css={style.registerButtonContainer}>
-          <ButtonComponent onClick={(event) => onSubmit(event as any)} register>
+          <ButtonComponent
+            onClick={(event) => onSubmit(event as any)}
+            register={true}
+          >
             登録
           </ButtonComponent>
         </div>

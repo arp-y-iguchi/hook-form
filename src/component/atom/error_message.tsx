@@ -1,4 +1,4 @@
-type ErrorMessageProps = { errorMessage?: string };
+type ErrorMessageProps = { errorMessage?: string; id: string };
 
 export default function ErrorMessageComponent({
   errorMessage,
